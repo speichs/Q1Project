@@ -22,3 +22,5 @@
 
 
 >MVP Goal: fully functional search for recipes that loads cards of recipes with pictures and ingredients and link to generate iframe of yummly recipe
+
+>pivotal Tracker: https://www.pivotaltracker.com/n/projects/2017761
