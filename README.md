@@ -19,3 +19,6 @@
 
 >Technologies employed
 >HTML5, CSS3, Bootstrap, JQuery, Aforementioned APIs
+
+
+>MVP Goal: fully functional search for recipes that loads cards of recipes with pictures and ingredients and link to generate iframe of yummly recipe
