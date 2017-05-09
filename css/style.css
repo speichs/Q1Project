@@ -1,0 +1,76 @@
+/*NavBar*/
+.navbar-default {
+  background-color: #3D1255;
+  background-image: none;
+
+}
+.nav.navbar-nav.navbar-right a{
+  color: white;
+}
+
+.navbar-brand.yard {
+  color: white;
+}
+
+/*Search Button*/
+.btn-danger{
+  background-image:none;
+  border-radius: 10%;
+  background-color: #764B8E;
+  border-color:#764B8E;
+  color: white;
+  margin: 0;
+}
+.search_btn{
+  padding: 0;
+}
+.btn-danger:hover{
+  background-color: grey;
+}
+
+/*Menu*/
+.row.menu_row{
+  border: 3px solid #008080;
+  border-radius: 10px;
+}
+.menu_row .btn_row{
+  margin:0;
+}
+.menu_row .second_row{
+  margin:0;
+}
+.menu_row .third_row{
+  margin:0;
+}
+p{
+  word-wrap: break-word;
+}
+
+
+/*Cards*/
+.panel-default.recipe_panel{
+  border-color: #003366;
+  border-width: 2px;
+}
+.panel-body{
+  padding:0
+}
+.ingredient_item{
+  list-style: none;
+}
+.ingredHead{
+  padding: 10px;
+}
+.card_btn_div{
+  text-align:center;
+}
+.gets{
+  display: inline-block;
+  margin: 5px;
+}
+
+
+/*slider*/
+.ui-slider-tooltip{
+  color:black
+}
