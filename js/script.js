@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
   //create slider with tooltip
+  var addedStars = 0;
   var slideVal = 500;
   var slider = $("#slider").slider({
     value: 500,
@@ -196,7 +197,7 @@ $(document).ready(function() {
           }//end for loop
           $('.ingredHead').click(function(event){
             let $target = $(event.target);
-            var $text = $target.children();
+            var $text = $target.children().clone();
             if($('#myModal').get(0)){
               $('.ingred_modal_body').text('');
               $text.css('display', 'initial');
@@ -258,7 +259,7 @@ $(document).ready(function() {
           }//end for loop
           $('.ingredHead').click(function(event){
             let $target = $(event.target);
-            var $text = $target.children();
+            var $text = $target.children().clone();
             console.log($text.get(0))
             if($('#myModal').get(0)){
               console.log(true)
@@ -277,7 +278,17 @@ $(document).ready(function() {
     }//end else if
   });// end primary search function
 
+  $('.rate_stars').click(function(){
+    $target = $(event.target);
+    if(addedStars === 5){
+    }
+    else {
+      $target.removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+      $target.css("color", "blue");
+      
+    }
 
+  })
 
 
 });

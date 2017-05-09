@@ -45,7 +45,18 @@
 p{
   word-wrap: break-word;
 }
-
+.outer_rate{
+  text-align:center;
+}
+.cook_time_sort{
+  text-align:center;
+}
+#slider{
+  text-align:center;
+}
+.rate_stars{
+  cursor:pointer;
+}
 
 /*Cards*/
 .panel-default.recipe_panel{
@@ -73,4 +84,9 @@ p{
 /*slider*/
 .ui-slider-tooltip{
   color:black
+}
+
+
+.recipe_panel{
+  height: 347px;
 }

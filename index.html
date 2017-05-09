@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport">
     <title>Yard to Table</title>
 
     <!--JQUERY CDN -->
@@ -96,14 +97,20 @@
             <br>
           </div>
           <div class="col-sm-3">
-            <p>Sort by Cooking Time</p>
-            <!-- <form class = 'slider_class'> -->
-              <div id = "slider"></div>
-              <!-- <input id = "range_slide" type="range" name="points" min="0" max="10" data-toggle="tooltip" data-placement='top' title='tooltip'> -->
-
+            <p class ="cook_time_sort">Sort by Cooking Time</p>
+            <br>
+            <div id = "slider"></div>
+            <br>
             <!-- </form> -->
-            <div class="ratings">
+            <div class="outer_rate">
               <h5>Rating</h5>
+              <div class="rating">
+                <span class='rate_stars glyphicon glyphicon-star-empty' aria-hidden='true'></span>
+                <span class='rate_stars glyphicon glyphicon-star-empty' aria-hidden='true'></span>
+                <span class='rate_stars glyphicon glyphicon-star-empty' aria-hidden='true'></span>
+                <span class='rate_stars glyphicon glyphicon-star-empty' aria-hidden='true'></span>
+                <span class='rate_stars glyphicon glyphicon-star-empty' aria-hidden='true'></span>
+              </div>
             </div>
           </div>
         </div><!-- end second row -->
