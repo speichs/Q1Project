@@ -165,6 +165,27 @@ $(document).ready(function() {
   });//end add_btn listenter
 
 
+  function genCard(data){
+    for (var i = 0; i < data.length; i++) {
+      let results2 = data[i];
+      var title = results2.name;
+      var img = results2.images[0].hostedLargeUrl;
+      var ingredients = results2.ingredientLines;
+      var rate = results2.rating;
+      var time = results2.totalTime;
+      makeCard(title, img, rate, time, ingredients, count);
+      count++;
+    }//end for loop
+  }
+
+
+
+
+
+
+
+
+
   //on main Search
   $('.primary_search').click(function(){
     if($("#recipe").prop("checked")){
@@ -278,15 +299,80 @@ $(document).ready(function() {
     }//end else if
   });// end primary search function
 
+  function eraseColor(){
+    // if($('.rate_stars').is('.glyphicon-star')){
+    //   $('.glyphicon-star').removeClass(".glyphicon-star").addClass('.glyphicon-star-empty');
+    // }
+
+     $('.rate_stars').addClass('rate_stars glyphicon glyphicon-star-empty');
+  }
+  console.log($('#one').get(0));
+
+
   $('.rate_stars').click(function(){
     $target = $(event.target);
-    if(addedStars === 5){
-    }
-    else {
-      $target.removeClass('glyphicon-star-empty').addClass('glyphicon-star');
-      $target.css("color", "blue");
-      
-    }
+    console.log($target)
+
+
+      if($target.is('#one')){
+        eraseColor();
+        $target.removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        $target.css("color", "blue");
+        addedStars = 1;
+        console.log(addedStars);
+      }
+      else if($target.is('#two')){
+        eraseColor();
+        $('#one').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        $('#one').css("color", "blue");
+        $('#two').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        $('#two').css("color", "blue");
+
+        addedStars = 2;
+        console.log(addedStars);
+      }
+      else if($target.is('#three')){
+        eraseColor();
+        $('#one').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        $('#one').css("color", "blue");
+        $('#two').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        $('#two').css("color", "blue");
+        $('#three').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        $('#three').css("color", "blue");
+        addedStars = 3;
+        console.log(addedStars);
+        console.log($('#three').get(0))
+      }
+      else if($target.is('#four')){
+        eraseColor();
+        $('#one').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        $('#one').css("color", "blue");
+        $('#two').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        $('#two').css("color", "blue");
+        $('#three').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        $('#three').css("color", "blue");
+        $('#four').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        $('#four').css("color", "blue");
+        addedStars = 4;
+        console.log(addedStars);
+      }
+      else if($target.is('#five')){
+        eraseColor();
+        $('#one').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        $('#one').css("color", "blue");
+        $('#two').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        $('#two').css("color", "blue");
+        $('#three').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        $('#three').css("color", "blue");
+        $('#four').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        $('#four').css("color", "blue");
+        $('#five').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        $('#five').css("color", "blue");
+        addedStars = 5;
+        console.log(addedStars);
+
+        //just erase all then add color to right one
+      }
 
   })
 
