@@ -168,82 +168,84 @@ $(document).ready(function() {
   function genCard(data){
     for (var i = 0; i < data.length; i++) {
       let results2 = data[i];
-      var title = results2.name;
-      var img = results2.images[0].hostedLargeUrl;
-      var ingredients = results2.ingredientLines;
-      var rate = results2.rating;
-      var time = results2.totalTime;
-      makeCard(title, img, rate, time, ingredients, count);
-      count++;
+      if(addedStars === 0){
+        var title = results2.name;
+        var img = results2.images[0].hostedLargeUrl;
+        var ingredients = results2.ingredientLines;
+        var rate = results2.rating;
+        var time = results2.totalTime;
+        var source = results2.attribution.url;
+        makeCard(title, img, rate, time, ingredients, count, source);
+        count++;
+      }
+      else if(results2.rating < addedStars){
+
+      }
+      else{
+        console.log(results2);
+        //console.log('Hello');
+        var title = results2.name;
+        var img = results2.images[0].hostedLargeUrl;
+        var ingredients = results2.ingredientLines;
+        var rate = results2.rating;
+        var time = results2.totalTime;
+        var source = results2.attribution.url;
+        makeCard(title, img, rate, time, ingredients, count, source);
+        count++;
+      }
+
     }//end for loop
   }
-
-
-
-
-
-
-
-
+  function getRecipeModal(){
+    $('.get_recipe').click(function(){
+      let $target = $(event.target);
+      let $value = $target.val()
+      if($('#recipeModal').get(0)){
+        $('.recipeIframe').attr("src", $value)
+      }
+      else{
+        makeRecipeModal($value);
+      }
+      $('#recipeModal').modal({show:true})
+    });
+  }
+  function getIngredientModal(){
+    $('.ingredHead').click(function(event){
+      let $target = $(event.target);
+      var $text = $target.children().clone();
+      if($('#myModal').get(0)){
+        $('.ingred_modal_body').text('');
+        $text.css('display', 'initial');
+        $('.ingred_modal_body').append($text.get(0));
+      }
+      else{
+        $text.css('display', 'initial');
+        makeModal($text);
+      }
+      $('#myModal').modal({show:true})
+    });//end ingredient click
+  }
 
   //on main Search
   $('.primary_search').click(function(){
+    $('.cards_row').text('');
     if($("#recipe").prop("checked")){
       searchText = tAText[0];
-      $xhr = $.getJSON('https://g-yumly.herokuapp.com/v1/api/recipes?q='+searchText+'&requirePictures=true&maxResult=20');
+      $xhr = $.getJSON('https://g-yumly.herokuapp.com/v1/api/recipes?q='+searchText+'&requirePictures=true&maxResult=40');
       $xhr.done(function(data){
         if ($xhr.status !== 200) {
           return;
         }
         var result = data.matches;
         var promiseArr = [];
-        // console.log(promiseArr);
         for(let i = 0; i < result.length; i++){
           var key = result[i].id
           promiseArr.push($.getJSON('https://g-yumly.herokuapp.com/v1/api/recipe/'+key));
         }//end for
         Promise.all(promiseArr).then(function(data){
-          for (var i = 0; i < data.length; i++) {
-            let results2 = data[i];
-            // console.log(results2)
-            var title = results2.name;
-            var img = results2.images[0].hostedLargeUrl;
-            var ingredients = results2.ingredientLines;
-            var rate = results2.rating;
-            var time = results2.totalTime;
-            var source = results2.attribution.url;
-            //console.log(source);
-            makeCard(title, img, rate, time, ingredients, count, source);
-            count++;
-          }//end for loop
-          $('.ingredHead').click(function(event){
-            let $target = $(event.target);
-            var $text = $target.children().clone();
-            if($('#myModal').get(0)){
-              $('.ingred_modal_body').text('');
-              $text.css('display', 'initial');
-              $('.ingred_modal_body').append($text.get(0));
-            }
-            else{
-              $text.css('display', 'initial');
-              makeModal($text);
-            }
-            $('#myModal').modal({show:true})
-          });//end ingredient click
-          $('.get_recipe').click(function(){
-            let $target = $(event.target);
-            let $value = $target.val()
-            console.log($value);
-            if($('#recipeModal').get(0)){
-              //$('.recipe_modal_body').text('');
-              // $text.css('display', 'initial');
-              $('.recipeIframe').attr("src", $value)
-            }
-            else{
-              makeRecipeModal($value);
-            }
-            $('#recipeModal').modal({show:true})
-          });
+          genCard(data)
+          getIngredientModal();
+          getRecipeModal();
         });
       });
     }//end if
@@ -254,9 +256,7 @@ $(document).ready(function() {
         amp = '&allowedIngredient[]=';
         queryString+=amp+searchText[i];
       }//end for
-      console.log(queryString);
-
-      $xhr = $.getJSON('https://g-yumly.herokuapp.com/v1/api/recipes?q=&requirePictures=true&maxResult=20'+queryString);
+      $xhr = $.getJSON('https://g-yumly.herokuapp.com/v1/api/recipes?q=&requirePictures=true&maxResult=40'+queryString);
       $xhr.done(function(data){
         if ($xhr.status !== 200) {
           return;
@@ -268,113 +268,76 @@ $(document).ready(function() {
           promiseArr.push($.getJSON('https://g-yumly.herokuapp.com/v1/api/recipe/'+key));
         }//end for
         Promise.all(promiseArr).then(function(data){
-          for (var i = 0; i < data.length; i++) {
-            let results2 = data[i];
-            var title = results2.name;
-            var img = results2.images[0].hostedLargeUrl;
-            var ingredients = results2.ingredientLines;
-            var rate = results2.rating;
-            var time = results2.totalTime;
-            makeCard(title, img, rate, time, ingredients, count);
-            count++;
-          }//end for loop
-          $('.ingredHead').click(function(event){
-            let $target = $(event.target);
-            var $text = $target.children().clone();
-            console.log($text.get(0))
-            if($('#myModal').get(0)){
-              console.log(true)
-              $('.ingred_modal_body').text('');
-              $text.css('display', 'initial');
-              $('.ingred_modal_body').append($text.get(0));
-            }
-            else{
-              $text.css('display', 'initial');
-              makeModal($text);
-            }
-            $('#myModal').modal({show:true})
-          });
+          console.log(data)
+          genCard(data);
+          getIngredientModal();
+          getRecipeModal();
         });
       });
     }//end else if
+    $('.add_text').val('');
+    $('textarea').text('');
+    tAText.length = 0;
   });// end primary search function
 
+  //menu rating functionality
   function eraseColor(){
-    // if($('.rate_stars').is('.glyphicon-star')){
-    //   $('.glyphicon-star').removeClass(".glyphicon-star").addClass('.glyphicon-star-empty');
-    // }
-
      $('.rate_stars').addClass('rate_stars glyphicon glyphicon-star-empty');
   }
-  console.log($('#one').get(0));
-
-
   $('.rate_stars').click(function(){
     $target = $(event.target);
-    console.log($target)
-
-
-      if($target.is('#one')){
-        eraseColor();
-        $target.removeClass('glyphicon-star-empty').addClass('glyphicon-star');
-        $target.css("color", "blue");
-        addedStars = 1;
-        console.log(addedStars);
-      }
-      else if($target.is('#two')){
-        eraseColor();
-        $('#one').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
-        $('#one').css("color", "blue");
-        $('#two').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
-        $('#two').css("color", "blue");
-
-        addedStars = 2;
-        console.log(addedStars);
-      }
-      else if($target.is('#three')){
-        eraseColor();
-        $('#one').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
-        $('#one').css("color", "blue");
-        $('#two').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
-        $('#two').css("color", "blue");
-        $('#three').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
-        $('#three').css("color", "blue");
-        addedStars = 3;
-        console.log(addedStars);
-        console.log($('#three').get(0))
-      }
-      else if($target.is('#four')){
-        eraseColor();
-        $('#one').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
-        $('#one').css("color", "blue");
-        $('#two').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
-        $('#two').css("color", "blue");
-        $('#three').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
-        $('#three').css("color", "blue");
-        $('#four').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
-        $('#four').css("color", "blue");
-        addedStars = 4;
-        console.log(addedStars);
-      }
-      else if($target.is('#five')){
-        eraseColor();
-        $('#one').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
-        $('#one').css("color", "blue");
-        $('#two').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
-        $('#two').css("color", "blue");
-        $('#three').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
-        $('#three').css("color", "blue");
-        $('#four').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
-        $('#four').css("color", "blue");
-        $('#five').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
-        $('#five').css("color", "blue");
-        addedStars = 5;
-        console.log(addedStars);
-
-        //just erase all then add color to right one
-      }
-
-  })
+    if($target.is('#one')){
+      eraseColor();
+      $target.removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+      $target.css("color", "blue");
+      addedStars = 1;
+      console.log(addedStars);
+    }
+    else if($target.is('#two')){
+      eraseColor();
+      $('#one').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+      $('#one').css("color", "blue");
+      $('#two').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+      $('#two').css("color", "blue");
+      addedStars = 2;
+    }
+    else if($target.is('#three')){
+      eraseColor();
+      $('#one').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+      $('#one').css("color", "blue");
+      $('#two').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+      $('#two').css("color", "blue");
+      $('#three').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+      $('#three').css("color", "blue");
+      addedStars = 3;
+    }
+    else if($target.is('#four')){
+      eraseColor();
+      $('#one').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+      $('#one').css("color", "blue");
+      $('#two').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+      $('#two').css("color", "blue");
+      $('#three').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+      $('#three').css("color", "blue");
+      $('#four').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+      $('#four').css("color", "blue");
+      addedStars = 4;
+    }
+    else if($target.is('#five')){
+      eraseColor();
+      $('#one').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+      $('#one').css("color", "blue");
+      $('#two').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+      $('#two').css("color", "blue");
+      $('#three').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+      $('#three').css("color", "blue");
+      $('#four').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+      $('#four').css("color", "blue");
+      $('#five').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+      $('#five').css("color", "blue");
+      addedStars = 5;
+    }
+  });
 
 
 });
