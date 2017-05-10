@@ -4,10 +4,10 @@ $(document).ready(function() {
   var addedStars = 0;
   var slideVal = 500;
   var slider = $("#slider").slider({
-    value: 500,
+    value: 240,
     min: 0,
-    max: 1000,
-    step: 50,
+    max: 480,
+    step: 20,
     start: function( event, ui ) {
       // console.log(ui);
       $(ui.handle).find('.ui-slider-tooltip').show();
@@ -16,7 +16,7 @@ $(document).ready(function() {
       $(ui.handle).find('.ui-slider-tooltip').hide();
     },
     slide: function(event, ui) {
-        $(ui.handle).find('.ui-slider-tooltip').text(ui.value);
+        $(ui.handle).find('.ui-slider-tooltip').text(ui.value+ "min");
     },
     create: function( event, ui ) {
       var tooltip = $('<div class="ui-slider-tooltip" />').css({
@@ -28,7 +28,6 @@ $(document).ready(function() {
     },
     change: function(event, ui) {
       slideVal = ui.value;
-
     }
     });
 
@@ -164,7 +163,6 @@ $(document).ready(function() {
     }
   });//end add_btn listenter
 
-
   function genCard(data){
     for (var i = 0; i < data.length; i++) {
       let results2 = data[i];
@@ -179,11 +177,9 @@ $(document).ready(function() {
         count++;
       }
       else if(results2.rating < addedStars){
-
       }
       else{
-        console.log(results2);
-        //console.log('Hello');
+        //console.log(results2);
         var title = results2.name;
         var img = results2.images[0].hostedLargeUrl;
         var ingredients = results2.ingredientLines;
@@ -193,7 +189,6 @@ $(document).ready(function() {
         makeCard(title, img, rate, time, ingredients, count, source);
         count++;
       }
-
     }//end for loop
   }
   function getRecipeModal(){
@@ -231,7 +226,9 @@ $(document).ready(function() {
     $('.cards_row').text('');
     if($("#recipe").prop("checked")){
       searchText = tAText[0];
-      $xhr = $.getJSON('https://g-yumly.herokuapp.com/v1/api/recipes?q='+searchText+'&requirePictures=true&maxResult=40');
+      let seconds = slideVal*60;
+      let timeSearchParam = "&maxTotalTimeInSeconds="+seconds;
+      $xhr = $.getJSON('https://g-yumly.herokuapp.com/v1/api/recipes?q='+searchText+'&requirePictures=true&maxResult=40'+timeSearchParam);
       $xhr.done(function(data){
         if ($xhr.status !== 200) {
           return;
@@ -239,24 +236,28 @@ $(document).ready(function() {
         var result = data.matches;
         var promiseArr = [];
         for(let i = 0; i < result.length; i++){
-          var key = result[i].id
+          var key = result[i].id;
+          console.log(key);
           promiseArr.push($.getJSON('https://g-yumly.herokuapp.com/v1/api/recipe/'+key));
         }//end for
         Promise.all(promiseArr).then(function(data){
           genCard(data)
           getIngredientModal();
           getRecipeModal();
+          groceryClick();
         });
       });
     }//end if
     else if($("#ingredients").prop("checked")){
       searchText = tAText;
       queryString = '';
+      let seconds = slideVal*60;
+      let timeSearchParam = "&maxTotalTimeInSeconds="+seconds;
       for(let i = 0; i < searchText.length; i++){
         amp = '&allowedIngredient[]=';
         queryString+=amp+searchText[i];
       }//end for
-      $xhr = $.getJSON('https://g-yumly.herokuapp.com/v1/api/recipes?q=&requirePictures=true&maxResult=40'+queryString);
+      $xhr = $.getJSON('https://g-yumly.herokuapp.com/v1/api/recipes?q=&requirePictures=true&maxResult=40'+queryString+timeSearchParam);
       $xhr.done(function(data){
         if ($xhr.status !== 200) {
           return;
@@ -278,6 +279,7 @@ $(document).ready(function() {
     $('.add_text').val('');
     $('textarea').text('');
     tAText.length = 0;
+    eraseColor();
   });// end primary search function
 
   //menu rating functionality
@@ -339,5 +341,32 @@ $(document).ready(function() {
     }
   });
 
+  function makeGroceryArea($ul){
+    let $groceryRow = $("<div class = 'row grocery_row'></div>");
+    let $listCol = $("<div class = 'grocery_list_col col-xs-12 col-sm-6'></div>");
+    let $listDiv = $("<div class = 'list_div'></div>");
+    let $title = $("<h4 class = 'grocery_title'></h4>");
+    $title.text('Grocery List');
+
+    $('.container').append($groceryRow);
+    $groceryRow.append($listCol);
+    $listCol.append($listDiv);
+    $listDiv.append($title);
+    $listDiv.append($ul);
+
+  }
+
+function groceryClick(){
+  $('.get_grocery').click(function(event){
+    let $target = $(event.target);
+    let parents = $target.parent().siblings()[2].children[0];
+    console.log(parents)
+    let $ul = $(parents);
+    let $ulClone = $ul.clone();
+    $ulClone.css('display', 'initial');
+    console.log($ul);
+    makeGroceryArea($ulClone);
+  })
+}
 
 });

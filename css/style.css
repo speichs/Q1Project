@@ -91,3 +91,10 @@ p{
 .recipe_panel{
   height: 347px;
 }
+
+
+
+/*GroceryList Area*/
+.list_div{
+  border: 1px solid black;
+}
