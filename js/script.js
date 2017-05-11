@@ -393,8 +393,10 @@ $(document).ready(function() {
   }
   function makeMapArea(){
     let $groceryRow = $('.grocery_row');
-    let $listCol = $("<div class = 'grocery_map_col col-xs-12 col -sm-6'></div>");
+    let $listCol = $("<div class = 'grocery_map_col col-xs-12 col-sm-6'></div>");
     let $listDiv = $("<div id = 'map'></div>");
+    let height = ($('.list_div').height()) + 2;
+    $listDiv.css('height', height);
     //try to make relative height to the grocery list
     $groceryRow.append($listCol);
     $listCol.append($listDiv);
