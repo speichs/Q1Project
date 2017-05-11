@@ -230,7 +230,7 @@ body{
   padding:0
 }
 .ingredient_item{
-  list-style: none;
+  /*list-style: none;*/
 }
 .ingredHead{
   padding: 10px;
@@ -252,12 +252,29 @@ body{
 .recipe_panel{
   height: 347px;
 }
+@media only screen and (min-width:992px) and (max-width:1199px){
+  .recipe_panel{
+    height: 400px;
+  }
+}
+@media only screen and (min-width:768px) and (max-width:991px){
+  .recipe_panel{
+    height: 450px;
+  }
+}
+@media only screen and (min-width:480px) and (max-width:767px){
+  .recipe_panel{
+    height: 500px;
+  }
+}
+
 
 
 
 /*GroceryList Area*/
-.list_div{
+.grocery_list_col{
   border: 1px solid black;
+
 }
 
 #map{

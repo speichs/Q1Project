@@ -101,7 +101,7 @@ $(document).ready(function() {
     console.log(arr)
     //creating elements
     let cardRow = $('.cards_row');
-    let cardCol = $("<div class = 'col-sm-3' ></div>");
+    let cardCol = $("<div class = 'col-xs-12 col-sm-6 col-md-4 col-lg-3' ></div>");
     let panelClass = $("<div class = 'panel panel-default recipe_panel'></div>");
     let panelHead = $("<div class = 'panel-heading'></div>");
     let panelTitle = $("<h3 class = 'panel-title'></div>");
@@ -389,7 +389,7 @@ $(document).ready(function() {
       let $groceryRow = $('.grocery_row');
       // let $groceryRow = $("<div class = 'row grocery_row'></div>");
       let $listCol = $("<div class = 'grocery_list_col col-xs-12 col-sm-6'></div>");
-      let $listDiv = $("<div class = 'list_div'></div>");
+      let $listDiv = $("<div class = 'col-sm-10 col-sm-offset-1 list_div'></div>");
       let $title = $("<h4 class = 'grocery_title text-center'></h4>");
       $title.text('Grocery List');
 
@@ -429,7 +429,6 @@ $(document).ready(function() {
     }
 
   }//end make groceryArea
-
 
 
 function groceryClick(){
