@@ -7,7 +7,7 @@ $(document).ready(function() {
     if($('.menu_row').css('display') !==  'none'){
       $('.menu_row').hide(1000,function(){})
         setTimeout(function(){ let $placeRow = $("<div class = 'row placehold_row'></div>");
-        $('.container').prepend($placeRow);
+        $('#menu_container').prepend($placeRow);
         let $second_row = $("<div class = 'row second_place'></div>");
         $placeRow.append($second_row);
         let $replaceCol = $("<div class='col-sm-1 search_btn'></div>");
@@ -247,7 +247,7 @@ $(document).ready(function() {
     $('.cards_row').text('');
     $('.menu_row').hide(1000,function(){})
       setTimeout(function(){ let $placeRow = $("<div class = 'row placehold_row'></div>");
-      $('.container').prepend($placeRow);
+      $('#menu_container').prepend($placeRow);
       let $second_row = $("<div class = 'row second_place'></div>");
       $placeRow.append($second_row);
       let $replaceCol = $("<div class='col-sm-1 search_btn'></div>");
