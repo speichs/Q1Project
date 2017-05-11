@@ -384,7 +384,7 @@ $(document).ready(function() {
     let $title = $("<h4 class = 'grocery_title text-center'></h4>");
     $title.text('Grocery List');
 
-    $('.container').append($groceryRow);
+    $('#menu_container').append($groceryRow);
     $groceryRow.append($listCol);
     $listCol.append($listDiv);
     $listDiv.append($title);
