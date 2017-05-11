@@ -18,7 +18,8 @@
     crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="css/jquery-ui.min.css">
-
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -89,17 +90,20 @@
               </label>
             </div>
           </div><!-- Search By Col -->
-          <div class="col-sm-3">
-            <input type="text" class="form-control add_text" placeholder="Text input">
+          <div class="col-sm-3 col-sm-push-1">
+            <input id = 'textAdder'type="text" class="form-control add_text" placeholder="Text input">
+            <br>
             <input class="btn btn-default add_btn" type="button" value="Add">
+            <br>
             <br>
             <textarea class="form-control" rows="3"></textarea>
             <br>
           </div>
-          <div class="col-sm-3">
+          <div class="col-sm-3 col-sm-push-2">
             <p class ="cook_time_sort">Sort by Cooking Time</p>
             <br>
             <div id = "slider"></div>
+            <br>
             <br>
             <!-- </form> -->
             <div class="outer_rate">
@@ -115,7 +119,7 @@
           </div>
         </div><!-- end second row -->
         <div class="row third_row ">
-          <div class="col-sm-1 col-sm-push-9">
+          <div id='mainSearch' class="col-sm-2 col-sm-push-10">
             <button type="button" class="btn btn-default pull-right primary_search">Search</button>
           </div>
         </div>
@@ -151,6 +155,7 @@
           </div> -->
       <!-- </div><!-- end col -->
       </div>
+      <div class = 'row grocery_row'></div>
       <!-- <div class="row grocery_row">
         <div class="grocery_list_col col-xs-12 col-sm-6">
           <div class="list_div">
@@ -164,5 +169,7 @@
         </div>
       </div> -->
     </div><!-- end container -->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDptlPBZ5vcWyumxFmLNhG9bUbtthQIPlM&callback=initMap&libraries=places"
+    defer ></script> -->
   </body>
 </html>

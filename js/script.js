@@ -1,4 +1,23 @@
 $(document).ready(function() {
+  isShown = true;
+  $('#search').click(function(){
+    if($('.menu_row').css('display') !==  'none'){
+      $('.menu_row').hide(1000,function(){})
+        setTimeout(function(){ let $placeRow = $("<div class = 'row placehold_row'></div>");
+        $('.container').append($placeRow);
+        let $second_row = $("<div class = 'row second_row'></div>");
+        $placeRow.append($second_row);
+        let $replaceCol = $("<div class='col-sm-1 search_btn'></div>");
+        $placeRow.append($replaceCol);
+        let $button = $("<button id= 'search' type='button' class='btn btn-danger search' aria-label='Left Align'><span class='glyphicon glyphicon-search' aria-hidden='true'></span></button>");
+        $replaceCol.append($button); }, 2000);
+    }
+    else if(){
+      console.log('not hidden')
+    }
+  });
+
+
 
   //create slider with tooltip
   var addedStars = 0;
@@ -64,7 +83,7 @@ $(document).ready(function() {
     $modalContainer = $("<div id ='recipeModal' class= 'modal fade bs-example-modal-lg' tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel'>");
     $largeModal = $("<div class = 'modal-dialog modal-lg' role = 'document'></div>");
     $modalContent = $("<div class='modal-content'></div>");
-    $modalContent.css('height', '1000px');
+    $modalContent.css('height', '100vh');
     $modalIframe = $("<iframe class ='recipeIframe'></iframe>");
     $modalIframe.attr("src", address);
     $modalIframe.css("width", "100%");
@@ -342,10 +361,11 @@ $(document).ready(function() {
   });
 
   function makeGroceryArea($ul){
-    let $groceryRow = $("<div class = 'row grocery_row'></div>");
+    let $groceryRow = $('.grocery_row');
+    // let $groceryRow = $("<div class = 'row grocery_row'></div>");
     let $listCol = $("<div class = 'grocery_list_col col-xs-12 col-sm-6'></div>");
     let $listDiv = $("<div class = 'list_div'></div>");
-    let $title = $("<h4 class = 'grocery_title'></h4>");
+    let $title = $("<h4 class = 'grocery_title text-center'></h4>");
     $title.text('Grocery List');
 
     $('.container').append($groceryRow);
@@ -355,6 +375,18 @@ $(document).ready(function() {
     $listDiv.append($ul);
 
   }
+  function makeMapArea(){
+    let $groceryRow = $('.grocery_row');
+    let $listCol = $("<div class = 'grocery_map_col col-xs-12 col -sm-6'></div>");
+    let $listDiv = $("<div id = 'map'></div>");
+    //try to make relative height to the grocery list
+    $groceryRow.append($listCol);
+    $listCol.append($listDiv);
+    let googleScript = $("<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDptlPBZ5vcWyumxFmLNhG9bUbtthQIPlM&callback=initMap&libraries=places'></script>");
+    $listDiv.append(googleScript);
+  }//end make groceryArea
+
+
 
 function groceryClick(){
   $('.get_grocery').click(function(event){
@@ -366,7 +398,101 @@ function groceryClick(){
     $ulClone.css('display', 'initial');
     console.log($ul);
     makeGroceryArea($ulClone);
+    makeMapArea()
   })
 }
 
-});
+
+
+});//end doc ready
+
+var map;
+var infoWindow;
+var service;
+var pos;
+
+function initMap() {
+  var pyrmont = new google.maps.LatLng(40.0150, -105.2705)
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: pyrmont,
+    zoom: 15,
+  });
+  google.maps.event.addDomListener(Window, 'load', initMap);
+
+  infoWindow = new google.maps.InfoWindow;
+
+
+  // Try HTML5 geolocation.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+
+      infoWindow.setPosition(pos);
+      infoWindow.setContent('Location found.');
+      // infoWindow.open(map);
+      map.setCenter(pos);
+
+      var request = {
+        location: pos,
+        radius: '1000',
+        query: 'grocery'
+      };
+
+      service = new google.maps.places.PlacesService(map);
+      service.textSearch(request, callback);
+
+      function callback(results, status) {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+          for (let i = 0; i < results.length; i++) {
+            let place = results[i];
+            console.log(place);
+            let marker = new google.maps.Marker({
+              position: {
+                lat:place.geometry.location.lat(),
+                lng:place.geometry.location.lng()
+              },
+              map: map,
+              title: place.name,
+              animation: google.maps.Animation.DROP
+            })//end marker creation
+
+            infoWindow2 = new google.maps.InfoWindow;
+            google.maps.event.addListener(marker, 'click', function() {
+              let posit = {
+                lat:place.geometry.location.lat(),
+                lng:place.geometry.location.lng()
+              };
+              infoWindow2.setPosition(posit);
+              infoWindow2.setContent(place.name);
+              infoWindow2.open(map, marker);
+            });
+          }//end for loop
+
+          function toggleBounce() {
+            if (marker.getAnimation() !== null) {
+              marker.setAnimation(null);
+            } else {
+              marker.setAnimation(google.maps.Animation.BOUNCE);
+            }
+          }
+        }//end if
+      }//end callback
+    },
+    function() {
+      handleLocationError(true, infoWindow, map.getCenter());
+    });
+  }//end geolocaiton if
+   else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, map.getCenter());
+  }//end else
+};//end initMap
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.');
+  infoWindow.open(map);}
