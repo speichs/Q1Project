@@ -1,23 +1,25 @@
 $(document).ready(function() {
   isShown = true;
+
+
+
   $('#search').click(function(){
     if($('.menu_row').css('display') !==  'none'){
       $('.menu_row').hide(1000,function(){})
         setTimeout(function(){ let $placeRow = $("<div class = 'row placehold_row'></div>");
-        $('.container').append($placeRow);
-        let $second_row = $("<div class = 'row second_row'></div>");
+        $('.container').prepend($placeRow);
+        let $second_row = $("<div class = 'row second_place'></div>");
         $placeRow.append($second_row);
         let $replaceCol = $("<div class='col-sm-1 search_btn'></div>");
         $placeRow.append($replaceCol);
-        let $button = $("<button id= 'search' type='button' class='btn btn-danger search' aria-label='Left Align'><span class='glyphicon glyphicon-search' aria-hidden='true'></span></button>");
-        $replaceCol.append($button); }, 2000);
-    }
-    else if(){
-      console.log('not hidden')
+        let $button = $("<button id= 'replacesearch' type='button' class='btn btn-danger search' aria-label='Left Align'><span class='glyphicon glyphicon-search' aria-hidden='true'></span></button>");
+        $replaceCol.append($button)
+        $('#replacesearch').click(function(){
+            $('.menu_row').show(1000);
+            $('.placehold_row').remove();
+        }); }, 1000);
     }
   });
-
-
 
   //create slider with tooltip
   var addedStars = 0;
@@ -105,7 +107,7 @@ $(document).ready(function() {
     let panelBody = $("<div class = 'panel-body'></div>");
     let panelImg = $("<img class = 'img-responsive'>");
     let recTitle = $("<div = class 'title'></div>");
-    let recipeTitle = $("<h5 class = 'text-center'></h5>");
+    let recipeTitle = $("<h5 class = 'text-center truncate'></h5>");
     recipeTitle.css('margin-bottom', '0px');
     let details = $("<div class = 'details'></div>");
     let $cookTime = $("<div class = 'cook_time text-center'></div>");
@@ -243,6 +245,19 @@ $(document).ready(function() {
   //on main Search
   $('.primary_search').click(function(){
     $('.cards_row').text('');
+    $('.menu_row').hide(1000,function(){})
+      setTimeout(function(){ let $placeRow = $("<div class = 'row placehold_row'></div>");
+      $('.container').prepend($placeRow);
+      let $second_row = $("<div class = 'row second_place'></div>");
+      $placeRow.append($second_row);
+      let $replaceCol = $("<div class='col-sm-1 search_btn'></div>");
+      $placeRow.append($replaceCol);
+      let $button = $("<button id= 'replacesearch' type='button' class='btn btn-danger search' aria-label='Left Align'><span class='glyphicon glyphicon-search' aria-hidden='true'></span></button>");
+      $replaceCol.append($button)
+      $('#replacesearch').click(function(){
+          $('.menu_row').show(1000);
+          $('.placehold_row').remove();
+      }); }, 1000);
     if($("#recipe").prop("checked")){
       searchText = tAText[0];
       let seconds = slideVal*60;
@@ -292,6 +307,7 @@ $(document).ready(function() {
           genCard(data);
           getIngredientModal();
           getRecipeModal();
+          groceryClick();
         });
       });
     }//end else if
@@ -301,7 +317,7 @@ $(document).ready(function() {
     eraseColor();
   });// end primary search function
 
-  //menu rating functionality
+  //menu rating functionality (stars)
   function eraseColor(){
      $('.rate_stars').addClass('rate_stars glyphicon glyphicon-star-empty');
   }
