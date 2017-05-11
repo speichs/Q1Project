@@ -259,12 +259,22 @@ body{
 }
 @media only screen and (min-width:768px) and (max-width:991px){
   .recipe_panel{
-    height: 450px;
+    height: 400px;
   }
 }
 @media only screen and (min-width:480px) and (max-width:767px){
   .recipe_panel{
-    height: 500px;
+    height: 400px;
+  }
+}
+@media only screen and (min-width:414px) and (max-width:479px){
+  .recipe_panel{
+    height: 430px;
+  }
+}
+@media only screen and (min-width:320px) and (max-width:413px){
+  .recipe_panel{
+    height: 400px;
   }
 }
 

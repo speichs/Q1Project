@@ -106,7 +106,7 @@ $(document).ready(function() {
     let panelHead = $("<div class = 'panel-heading'></div>");
     let panelTitle = $("<h3 class = 'panel-title'></div>");
     let panelBody = $("<div class = 'panel-body'></div>");
-    let panelImg = $("<img class = 'img-responsive'>");
+    let panelImg = $("<img class = 'img-responsive center-block'>");
     let recTitle = $("<div = class 'title'></div>");
     let recipeTitle = $("<h5 class = 'text-center truncate'></h5>");
     recipeTitle.css('margin-bottom', '0px');
