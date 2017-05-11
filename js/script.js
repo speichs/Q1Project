@@ -98,6 +98,7 @@ $(document).ready(function() {
 
   //make cards
   function makeCard(title, img, rate, time, arr, count, source){
+    console.log(arr)
     //creating elements
     let cardRow = $('.cards_row');
     let cardCol = $("<div class = 'col-sm-3' ></div>");
@@ -136,7 +137,7 @@ $(document).ready(function() {
       divRating.append($("<span class='glyphicon glyphicon-star' aria-hidden='true' style = 'color:blue'></span>"));
     }
     for(let i = 0; i < arr.length; i++){
-      let $li = $("<li class = 'ingredient_item'>"+arr[i]+"<li>");
+      let $li = $("<li class = 'ingredient_item'>"+arr[i]+"</li>");
       $ingredUl.append($li);
       $ingredUl.append("<br>");
     }
@@ -271,7 +272,7 @@ $(document).ready(function() {
         var promiseArr = [];
         for(let i = 0; i < result.length; i++){
           var key = result[i].id;
-          console.log(key);
+          // console.log(key);
           promiseArr.push($.getJSON('https://g-yumly.herokuapp.com/v1/api/recipe/'+key));
         }//end for
         Promise.all(promiseArr).then(function(data){
@@ -303,7 +304,7 @@ $(document).ready(function() {
           promiseArr.push($.getJSON('https://g-yumly.herokuapp.com/v1/api/recipe/'+key));
         }//end for
         Promise.all(promiseArr).then(function(data){
-          console.log(data)
+          // console.log(data)
           genCard(data);
           getIngredientModal();
           getRecipeModal();
@@ -328,7 +329,7 @@ $(document).ready(function() {
       $target.removeClass('glyphicon-star-empty').addClass('glyphicon-star');
       $target.css("color", "blue");
       addedStars = 1;
-      console.log(addedStars);
+      // console.log(addedStars);
     }
     else if($target.is('#two')){
       eraseColor();
@@ -377,31 +378,56 @@ $(document).ready(function() {
   });
 
   function makeGroceryArea($ul){
-    let $groceryRow = $('.grocery_row');
-    // let $groceryRow = $("<div class = 'row grocery_row'></div>");
-    let $listCol = $("<div class = 'grocery_list_col col-xs-12 col-sm-6'></div>");
-    let $listDiv = $("<div class = 'list_div'></div>");
-    let $title = $("<h4 class = 'grocery_title text-center'></h4>");
-    $title.text('Grocery List');
+    if($('.grocery_list_col').length > 0){
+      $('.list_div').children().remove();
+      let $title = $("<h4 class = 'grocery_title text-center'></h4>");
+      $title.text('Grocery List');
+      $('.list_div').append($title);
+      $('.list_div').append($ul);
+    }
+    else{
+      let $groceryRow = $('.grocery_row');
+      // let $groceryRow = $("<div class = 'row grocery_row'></div>");
+      let $listCol = $("<div class = 'grocery_list_col col-xs-12 col-sm-6'></div>");
+      let $listDiv = $("<div class = 'list_div'></div>");
+      let $title = $("<h4 class = 'grocery_title text-center'></h4>");
+      $title.text('Grocery List');
 
-    $('#menu_container').append($groceryRow);
-    $groceryRow.append($listCol);
-    $listCol.append($listDiv);
-    $listDiv.append($title);
-    $listDiv.append($ul);
-
+      $('#menu_container').append($groceryRow);
+      $groceryRow.append($listCol);
+      $listCol.append($listDiv);
+      $listDiv.append($title);
+      $listDiv.append($ul);
+    }
   }
+
   function makeMapArea(){
-    let $groceryRow = $('.grocery_row');
-    let $listCol = $("<div class = 'grocery_map_col col-xs-12 col-sm-6'></div>");
-    let $listDiv = $("<div id = 'map'></div>");
-    let height = ($('.list_div').height()) + 2;
-    $listDiv.css('height', height);
-    //try to make relative height to the grocery list
-    $groceryRow.append($listCol);
-    $listCol.append($listDiv);
-    let googleScript = $("<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDptlPBZ5vcWyumxFmLNhG9bUbtthQIPlM&callback=initMap&libraries=places'></script>");
-    $listDiv.append(googleScript);
+    if($('.grocery_map_col').length > 0){
+      $('.grocery_map_col').remove();
+      let $groceryRow = $('.grocery_row');
+      let $listCol = $("<div class = 'grocery_map_col col-xs-12 col-sm-6'></div>");
+      let $listDiv = $("<div id = 'map'></div>");
+      let height = ($('.list_div').height()) + 2;
+      $listDiv.css('height', height);
+      //try to make relative height to the grocery list
+      $groceryRow.append($listCol);
+      $listCol.append($listDiv);
+      let googleScript = $("<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDptlPBZ5vcWyumxFmLNhG9bUbtthQIPlM&callback=initMap&libraries=places'></script>");
+      $listDiv.append(googleScript);
+    }
+    else{
+      let $groceryRow = $('.grocery_row');
+      let $listCol = $("<div class = 'grocery_map_col col-xs-12 col-sm-6'></div>");
+      let $listDiv = $("<div id = 'map'></div>");
+      let height = ($('.list_div').height()) + 2;
+      $listDiv.css('height', height);
+      //try to make relative height to the grocery list
+      $groceryRow.append($listCol);
+      $listCol.append($listDiv);
+      let googleScript = $("<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDptlPBZ5vcWyumxFmLNhG9bUbtthQIPlM&callback=initMap&libraries=places'></script>");
+      $listDiv.append(googleScript);
+    }
+
   }//end make groceryArea
 
 
@@ -410,13 +436,14 @@ function groceryClick(){
   $('.get_grocery').click(function(event){
     let $target = $(event.target);
     let parents = $target.parent().siblings()[2].children[0];
-    console.log(parents)
+    // console.log(parents)
     let $ul = $(parents);
     let $ulClone = $ul.clone();
     $ulClone.css('display', 'initial');
-    console.log($ul);
+    // console.log($ul);
     makeGroceryArea($ulClone);
     makeMapArea()
+    window.location.href='#gross_row'
   })
 }
 
@@ -433,7 +460,7 @@ function initMap() {
   var pyrmont = new google.maps.LatLng(40.0150, -105.2705)
   map = new google.maps.Map(document.getElementById('map'), {
     center: pyrmont,
-    zoom: 15,
+    zoom: 12,
   });
   google.maps.event.addDomListener(Window, 'load', initMap);
 
@@ -466,7 +493,7 @@ function initMap() {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
           for (let i = 0; i < results.length; i++) {
             let place = results[i];
-            console.log(place);
+            // console.log(place);
             let marker = new google.maps.Marker({
               position: {
                 lat:place.geometry.location.lat(),
