@@ -165,8 +165,11 @@ $(document).ready(function() {
   $('.add_btn').click(function(){
     if($("#recipe").prop("checked")){
       if(tAText.length !== 0){
-        alert('You can only search for one recipe at a time');
         $('.add_text').val('');
+        let $snackbar = $("#snackbar");
+        $snackbar.text('You may only search one recipe at a time');
+        $snackbar.addClass('show');
+        setTimeout(function(){ $snackbar.toggleClass('show'); }, 3000);
       }
       else{
         tAText.push($('.add_text').val());
