@@ -214,8 +214,10 @@ $(document).ready(function() {
   function getRecipeModal(){
     $('.get_recipe').click(function(){
       let $target = $(event.target);
-      let $value = $target.val()
+      let $value = $target.val();
+      console.log($value);
       if($('#recipeModal').get(0)){
+        $value = $value.replace('http://www.yummly.co','https://g-ystatic.herokuapp.com')
         $('.recipeIframe').attr("src", $value)
       }
       else{
