@@ -3,7 +3,7 @@
 body{
   display:flex;
   height:100vh;
-  background-image: url('pics/modernBoard.jpeg');
+  background-image: url('../pics/modernBoard.jpeg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

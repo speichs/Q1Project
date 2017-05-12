@@ -265,7 +265,22 @@ $(document).ready(function() {
       searchText = tAText[0];
       let seconds = slideVal*60;
       let timeSearchParam = "&maxTotalTimeInSeconds="+seconds;
-      $xhr = $.getJSON('https://g-yumly.herokuapp.com/v1/api/recipes?q='+searchText+'&requirePictures=true&maxResult=40'+timeSearchParam);
+      let course = $('#course').val()
+      if(course === 'select course'){
+        course = '';
+      }
+      else{
+        course = '&allowedCourse[]=course^course-'+course;
+      }
+      let cuisine = $('#cusine').val()
+      if(cuisine === 'select cuisine'){
+        cuisine = '';
+      }
+      else{
+        cuisine = '&allowedCuisine[]=cuisine^cuisine-'+cuisine;
+      }
+
+      $xhr = $.getJSON('https://g-yumly.herokuapp.com/v1/api/recipes?q='+searchText+'&requirePictures=true&maxResult=40'+timeSearchParam+cuisine+course);
       $xhr.done(function(data){
         if ($xhr.status !== 200) {
           return;
@@ -289,11 +304,25 @@ $(document).ready(function() {
       queryString = '';
       let seconds = slideVal*60;
       let timeSearchParam = "&maxTotalTimeInSeconds="+seconds;
+      let course = $('#course').val()
+      if(course === 'select course'){
+        course = '';
+      }
+      else{
+        course = '&allowedCourse[]=course^course-'+course;
+      }
+      let cuisine = $('#cusine').val()
+      if(cuisine === 'select cuisine'){
+        cuisine = '';
+      }
+      else{
+        cuisine = '&allowedCuisine[]=cuisine^cuisine-'+cuisine;
+      }
       for(let i = 0; i < searchText.length; i++){
         amp = '&allowedIngredient[]=';
         queryString+=amp+searchText[i];
       }//end for
-      $xhr = $.getJSON('https://g-yumly.herokuapp.com/v1/api/recipes?q=&requirePictures=true&maxResult=40'+queryString+timeSearchParam);
+      $xhr = $.getJSON('https://g-yumly.herokuapp.com/v1/api/recipes?q=&requirePictures=true&maxResult=40'+queryString+timeSearchParam+cuisine+course);
       $xhr.done(function(data){
         if ($xhr.status !== 200) {
           return;
@@ -386,7 +415,6 @@ $(document).ready(function() {
     }
     else{
       let $groceryRow = $('.grocery_row');
-      // let $groceryRow = $("<div class = 'row grocery_row'></div>");
       let $listCol = $("<div class = 'grocery_list_col col-xs-12 col-sm-6'></div>");
       let $listDiv = $("<div class = 'col-sm-10 col-sm-offset-1 list_div'></div>");
       let $title = $("<h4 class = 'grocery_title text-center'></h4>");

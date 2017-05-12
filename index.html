@@ -54,8 +54,12 @@
             </button>
           </div><!--end col -->
         </div>
-        <div class="row second_row">
-          <div class="col-sm-3 col-sm-push-1">
+
+        <div class="center-block row second_row">
+          <div class="col-lg-1 col-sm-0">
+
+          </div>
+          <div id = 'begin'class="col-lg-2 col-sm-2 menu-cols" >
             <h5>Search By</h5>
             <div class="radio">
               <label for= 'ingredients'>
@@ -70,7 +74,7 @@
               </label>
             </div>
           </div><!-- Search By Col -->
-          <div class="col-sm-3 col-sm-push-1">
+          <div class="col-lg-3 col-sm-3  menu-cols">
             <input id = 'textAdder'type="text" class="form-control add_text" placeholder="Text input">
             <br>
             <input class="btn btn-default add_btn" type="button" value="Add">
@@ -79,11 +83,47 @@
             <textarea class="form-control" rows="3"></textarea>
             <br>
           </div>
-          <div class="col-sm-3 col-sm-push-2">
+
+          <div class="col-lg-2 col-sm-3">
+            <!-- <div class="row"> -->
+              <label for="cuisine" class = 'center-block'>
+                <select name = 'cuisine' id="cuisine" class="form-control" placeholder='select'>
+                  <option class ='cuisine' value="select">Select Cuisine</option>
+                  <option class ='cuisine' value="american">American</option>
+                  <option class ='cuisine' value="brazilian">Brazilian</option>
+                  <option class ='cuisine' value="french">French</option>
+                  <option class ='cuisine' value="german">German</option>
+                  <option class ='cuisine' value="indian">Indian</option>
+                  <option class ='cuisine' value="italian">Italian</option>
+                  <option class ='cuisine' value="japanese">Japanese</option>
+                  <option class ='cuisine' value="mexican">Mexican</option>
+                  <option class ='cuisine' value="portuguese">Portuguese</option>
+                  <option class = 'cuisine' value="spanish">Spanish</option>
+                  <option class = 'cuisine' value="thai">Thai</option>
+                </select>
+              </label>
+            <!-- </div> -->
+            <br>
+            <!-- <div class="row"> -->
+              <label for="cuisine" class = 'center-block'>
+                <select name = 'course' id="course" class="form-control" placeholder='select'>
+                  <option class ='cuisine' value="select">Select Course</option>
+                  <option class ='cuisine' value="Appetizers">Appetizers</option>
+                  <option class ='cuisine' value="Breakfast+and+Brunch">Breakfast and Brunch</option>
+                  <option class ='cuisine' value="Lunch">Lunch</option>
+                  <option class ='cuisine' value="Main+Courses">Main Courses</option>
+                  <option class ='cuisine' value="Side+Dishes">Side Dishes</option>
+                  <option class ='cuisine' value="Soups">Soups</option>
+                  <option class ='cuisine' value="Desserts">Desserts</option>
+                  <option class ='cuisine' value="Snacks">Snacks</option>
+                </select>
+              </label>
+          </div>
+            <br>
+          <div id = 'end'class="col-lg-3 col-sm-3 ">
             <p class ="cook_time_sort">Sort by Cooking Time</p>
             <br>
             <div id = "slider"></div>
-            <br>
             <br>
             <!-- </form> -->
             <div class="outer_rate">
@@ -97,6 +137,9 @@
               </div>
             </div>
           </div>
+          <!-- <div id="finish" class="col-sm-1 menu-cols">
+
+          </div> -->
         </div><!-- end second row -->
         <div class="row third_row ">
           <div id='mainSearch' class="col-sm-2 col-sm-push-10">
