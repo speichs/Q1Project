@@ -30,7 +30,6 @@ $(document).ready(function() {
     max: 480,
     step: 20,
     start: function( event, ui ) {
-      // console.log(ui);
       $(ui.handle).find('.ui-slider-tooltip').show();
     },
     stop: function( event, ui ) {
@@ -98,7 +97,6 @@ $(document).ready(function() {
 
   //make cards
   function makeCard(title, img, rate, time, arr, count, source){
-    console.log(arr)
     //creating elements
     let cardRow = $('.cards_row');
     let cardCol = $("<div class = 'col-xs-12 col-sm-6 col-md-4 col-lg-3' ></div>");
@@ -145,8 +143,6 @@ $(document).ready(function() {
     panelImg.attr("src", ""+img+"");
     cardRow.append(cardCol);
     cardCol.append(panelClass);
-    //panelClass.append(panelHead);
-    //panelHead.append(panelTitle);
     panelClass.append(panelBody);
     panelBody.append(panelImg);
     panelBody.append(recTitle);
@@ -201,7 +197,6 @@ $(document).ready(function() {
       else if(results2.rating < addedStars){
       }
       else{
-        //console.log(results2);
         var title = results2.name;
         var img = results2.images[0].hostedLargeUrl;
         var ingredients = results2.ingredientLines;
@@ -246,6 +241,10 @@ $(document).ready(function() {
   //on main Search
   $('.primary_search').click(function(){
     $('.cards_row').text('');
+    if($('.grocery_map_col').length > 0){
+      $('.grocery_map_col').remove();
+      $('.grocery_list_col').remove();
+    }
     $('.menu_row').hide(1000,function(){})
       setTimeout(function(){ let $placeRow = $("<div class = 'row placehold_row'></div>");
       $('#menu_container').prepend($placeRow);
@@ -272,7 +271,6 @@ $(document).ready(function() {
         var promiseArr = [];
         for(let i = 0; i < result.length; i++){
           var key = result[i].id;
-          // console.log(key);
           promiseArr.push($.getJSON('https://g-yumly.herokuapp.com/v1/api/recipe/'+key));
         }//end for
         Promise.all(promiseArr).then(function(data){
@@ -304,7 +302,6 @@ $(document).ready(function() {
           promiseArr.push($.getJSON('https://g-yumly.herokuapp.com/v1/api/recipe/'+key));
         }//end for
         Promise.all(promiseArr).then(function(data){
-          // console.log(data)
           genCard(data);
           getIngredientModal();
           getRecipeModal();
@@ -329,7 +326,6 @@ $(document).ready(function() {
       $target.removeClass('glyphicon-star-empty').addClass('glyphicon-star');
       $target.css("color", "blue");
       addedStars = 1;
-      // console.log(addedStars);
     }
     else if($target.is('#two')){
       eraseColor();
@@ -392,7 +388,6 @@ $(document).ready(function() {
       let $listDiv = $("<div class = 'col-sm-10 col-sm-offset-1 list_div'></div>");
       let $title = $("<h4 class = 'grocery_title text-center'></h4>");
       $title.text('Grocery List');
-
       $('#menu_container').append($groceryRow);
       $groceryRow.append($listCol);
       $listCol.append($listDiv);
@@ -409,7 +404,6 @@ $(document).ready(function() {
       let $listDiv = $("<div id = 'map'></div>");
       let height = ($('.list_div').height()) + 2;
       $listDiv.css('height', height);
-      //try to make relative height to the grocery list
       $groceryRow.append($listCol);
       $listCol.append($listDiv);
       let googleScript = $("<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDptlPBZ5vcWyumxFmLNhG9bUbtthQIPlM&callback=initMap&libraries=places'></script>");
@@ -435,11 +429,9 @@ function groceryClick(){
   $('.get_grocery').click(function(event){
     let $target = $(event.target);
     let parents = $target.parent().siblings()[2].children[0];
-    // console.log(parents)
     let $ul = $(parents);
     let $ulClone = $ul.clone();
     $ulClone.css('display', 'initial');
-    // console.log($ul);
     makeGroceryArea($ulClone);
     makeMapArea()
     window.location.href='#gross_row'
