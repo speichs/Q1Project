@@ -78,7 +78,7 @@ $(document).ready(function() {
   //recipe Modals
   function makeRecipeModal(address){
     //creating modal elements
-    var $listElem = address;
+    var $listElem = address.replace('http','https');
     $modalContainer = $("<div id ='recipeModal' class= 'modal fade bs-example-modal-lg' tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel'>");
     $largeModal = $("<div class = 'modal-dialog modal-lg' role = 'document'></div>");
     $modalContent = $("<div class='modal-content'></div>");
@@ -477,6 +477,7 @@ function groceryClick(){
     let $ul = $(parents);
     let $ulClone = $ul.clone();
     $ulClone.css('display', 'initial');
+    $ulClone.children().addClass('liList')
     makeGroceryArea($ulClone);
     makeMapArea()
     window.location.href='#gross_row'

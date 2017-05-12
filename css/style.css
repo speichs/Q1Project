@@ -319,7 +319,7 @@ body{
 .grocery_list_col{
   border: 1px solid black;
 }
-li{
+.liList{
   list-style-type:circle;
 }
 #map{
