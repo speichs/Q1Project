@@ -78,7 +78,9 @@ $(document).ready(function() {
   //recipe Modals
   function makeRecipeModal(address){
     //creating modal elements
-    var $listElem = address.replace('http','https');
+    //var $listElem = address.replace('http','https');
+    address = address.replace('http://www.yummly.co','https://g-ystatic.herokuapp.com')
+    console.log(address);
     $modalContainer = $("<div id ='recipeModal' class= 'modal fade bs-example-modal-lg' tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel'>");
     $largeModal = $("<div class = 'modal-dialog modal-lg' role = 'document'></div>");
     $modalContent = $("<div class='modal-content'></div>");
