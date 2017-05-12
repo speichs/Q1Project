@@ -1,3 +1,4 @@
+/*body*/
 body{
   font-family: 'Roboto', sans-serif;
   padding-bottom: 2%;
@@ -92,7 +93,6 @@ body{
 /*Menu*/
 .row.menu_row{
   border: 3px solid rgba(178, 223, 219, 1);
-  /*border-radius: 10px;*/
 }
 .menu_row .btn_row{
   margin:0;
@@ -162,7 +162,6 @@ body{
   color: white;
   margin: 0;
 }
-
 .add_btn:active:hover{
   background-image:none;
   border-radius: 0;
@@ -171,7 +170,6 @@ body{
   color: white;
   margin: 0;
 }
-
 .primary_search{
   background-image:none;
   border-radius: 0;
@@ -216,9 +214,6 @@ body{
 .panel-body{
   padding:0
 }
-.ingredient_item{
-  /*list-style: none;*/
-}
 .ingredHead{
   padding: 10px;
 }
@@ -251,7 +246,6 @@ body{
   background-color: rgba(84, 110, 122, 1);
   border-color:rgba(84, 110, 122, 1);
   color: white;
-
 }
 .gets:active:hover{
   background-image:none;
@@ -259,7 +253,9 @@ body{
   background-color: rgba(84, 110, 122, 1);
   border-color:rgba(84, 110, 122, 1);
   color: white;
-  /*margin: 0;*/
+}
+.recipe_panel{
+  height: 347px;
 }
 
 /*slider*/
@@ -268,9 +264,6 @@ body{
 }
 
 /*Media Queries*/
-.recipe_panel{
-  height: 347px;
-}
 @media only screen and (min-width:992px) and (max-width:1199px){
   .recipe_panel{
     height: 400px;
@@ -300,16 +293,14 @@ body{
 /*GroceryList Area*/
 .grocery_list_col{
   border: 1px solid black;
-
 }
 li{
   list-style-type:circle;
 }
-
 #map{
-  /*height: 250px;*/
   width: 100%;
 }
+
 
 /*footer*/
 #footer{
