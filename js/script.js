@@ -263,6 +263,12 @@ $(document).ready(function() {
       }); }, 1000);
     if($("#recipe").prop("checked")){
       searchText = tAText[0];
+      if(searchText === undefined){
+        searchText = '';
+      }
+      else{
+        searchText = searchText;
+      }
       let seconds = slideVal*60;
       let timeSearchParam = "&maxTotalTimeInSeconds="+seconds;
       let course = $('#course').val()
@@ -272,7 +278,7 @@ $(document).ready(function() {
       else{
         course = '&allowedCourse[]=course^course-'+course;
       }
-      let cuisine = $('#cusine').val()
+      let cuisine = $('#cuisine').val()
       if(cuisine === 'select cuisine'){
         cuisine = '';
       }
@@ -311,23 +317,33 @@ $(document).ready(function() {
       else{
         course = '&allowedCourse[]=course^course-'+course;
       }
-      let cuisine = $('#cusine').val()
+      let cuisine = $('#cuisine').val();
+      console.log('initial cuisine: ', cuisine);
       if(cuisine === 'select cuisine'){
         cuisine = '';
       }
       else{
         cuisine = '&allowedCuisine[]=cuisine^cuisine-'+cuisine;
       }
-      for(let i = 0; i < searchText.length; i++){
-        amp = '&allowedIngredient[]=';
-        queryString+=amp+searchText[i];
-      }//end for
+      if(tAText.length > 0){
+        for(let i = 0; i < searchText.length; i++){
+          amp = '&allowedIngredient[]=';
+          queryString+=amp+searchText[i];
+        }//end for
+      }
+      else{
+        queryString ='';
+      }
+      console.log('queryString: ', queryString)
+      console.log('cuisine: ', cuisine);
+      console.log('course:' ,course);
       $xhr = $.getJSON('https://g-yumly.herokuapp.com/v1/api/recipes?q=&requirePictures=true&maxResult=40'+queryString+timeSearchParam+cuisine+course);
       $xhr.done(function(data){
         if ($xhr.status !== 200) {
           return;
         }
         var result = data.matches;
+        console.log(result)
         var promiseArr = [];
         for(let i = 0; i < result.length; i++){
           var key = result[i].id
