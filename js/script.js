@@ -1,8 +1,6 @@
 $(document).ready(function() {
   isShown = true;
 
-
-
   $('#search').click(function(){
     if($('.menu_row').css('display') !==  'none'){
       $('.menu_row').hide(1000,function(){})
@@ -531,7 +529,7 @@ function initMap() {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
           for (let i = 0; i < results.length; i++) {
             let place = results[i];
-            // console.log(place);
+            //  console.log(place);
             let marker = new google.maps.Marker({
               position: {
                 lat:place.geometry.location.lat(),
@@ -549,7 +547,10 @@ function initMap() {
                 lng:place.geometry.location.lng()
               };
               infoWindow2.setPosition(posit);
-              infoWindow2.setContent(place.name);
+              let name = place.name;
+              let address = place.formatted_address;
+              let html = '<div>'+name+'</div>'+'<br>'+'<div>'+address+'</div>'
+              infoWindow2.setContent(html);
               infoWindow2.open(map, marker);
             });
           }//end for loop
