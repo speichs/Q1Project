@@ -1,0 +1,381 @@
+/*body*/
+body{
+  font-family: 'Roboto', sans-serif;
+  padding-bottom: 2%;
+}
+
+/*NavBar*/
+.navbar-default {
+  background-color: #9e9e9e;
+  background-image: none;
+  font-family: 'Lato', sans-serif;
+  border-radius: 0;
+}
+.yard{
+  font-size: 30px;
+  text-shadow: none;
+}
+#test{
+  text-shadow: none;
+}
+.dropdown-togle{
+  text-shadow: none;
+}
+.nav.navbar-nav.navbar-right a{
+  color: white;
+}
+.navbar-brand.yard {
+  color: white;
+}
+/*Search Button*/
+.btn-danger{
+  background-image:none;
+  border-radius: 0;
+  background-color: rgba(84, 110, 122, 1);
+  border-color:rgba(84, 110, 122, 1);
+  color: white;
+  margin: 0;
+}
+.search_btn{
+  padding: 0;
+}
+#search:hover{
+  background-image:none;
+  border-radius: 0;
+  background-color: rgba(120, 144, 156, 1);
+  border-color:rgba(120, 144, 156, 1);
+  color: white;
+  margin: 0;
+}
+#search:focus,
+#search.focus{
+  background-image:none;
+  border-radius: 0;
+  background-color: rgba(84, 110, 122, 1);
+  border-color:rgba(84, 110, 122, 1);
+  color: white;
+  margin: 0;
+}
+#search:active{
+  background-image:none;
+  border-radius: 0;
+  background-color: rgba(84, 110, 122, 1);
+  border-color:rgba(84, 110, 122, 1);
+  color: white;
+  margin: 0;
+}
+#replacesearch:hover{
+  background-image:none;
+  border-radius: 0;
+  background-color: rgba(120, 144, 156, 1);
+  border-color:rgba(120, 144, 156, 1);
+  color: white;
+  margin: 0;
+}
+#replacesearch:focus,
+#replacesearch.focus{
+  background-image:none;
+  border-radius: 0;
+  background-color: rgba(84, 110, 122, 1);
+  border-color:rgba(84, 110, 122, 1);
+  color: white;
+  margin: 0;
+}
+#replacesearch:active{
+  background-image:none;
+  border-radius: 0;
+  background-color: rgba(84, 110, 122, 1);
+  border-color:rgba(84, 110, 122, 1);
+  color: white;
+  margin: 0;
+}
+
+/*Menu*/
+.row.menu_row{
+  border: 3px solid rgba(178, 223, 219, 1);
+}
+.menu_row .btn_row{
+  margin:0;
+}
+.menu_row .second_row{
+  margin:0;
+}
+.second_place{
+  margin:0;
+}
+.menu_row .third_row{
+  margin:0;
+}
+.outer_rate{
+  text-align:center;
+}
+.cook_time_sort{
+  text-align:center;
+}
+#slider{
+  text-align:center;
+}
+.rate_stars{
+  cursor:pointer;
+  color:blue;
+}
+#textAdder{
+  border: none;
+  border-bottom: 2px solid #3D1255 ;
+  border-radius: 0;
+}
+#textAdder::placeholder{
+  color: rgba(178, 223, 219, 1);
+}
+
+#mainSearch{
+  padding:10px;
+}
+.placehold_row{
+  margin:0;
+  border:3px solid white;
+  border-radius: 10px;
+}
+.add_btn{
+  background-image:none;
+  border-radius: 0;
+  background-color: rgba(84, 110, 122, 1);
+  border-color:rgba(84, 110, 122, 1);
+  color: white;
+  margin: 0;
+  text-shadow: none;
+}
+.add_btn:hover{
+  background-image:none;
+  border-radius: 0;
+  background-color: rgba(120, 144, 156, 1);
+  border-color:rgba(120, 144, 156, 1);
+  color: white;
+  margin: 0;
+  text-shadow: none;
+}
+.add_btn:focus{
+  background-image:none;
+  border-radius: 0;
+  background-color: rgba(84, 110, 122, 1);
+  border-color:rgba(84, 110, 122, 1);
+  color: white;
+  margin: 0;
+}
+.add_btn:active:hover{
+  background-image:none;
+  border-radius: 0;
+  background-color: rgba(84, 110, 122, 1);
+  border-color:rgba(84, 110, 122, 1);
+  color: white;
+  margin: 0;
+}
+.primary_search{
+  background-image:none;
+  border-radius: 0;
+  background-color: rgba(84, 110, 122, 1);
+  border-color:rgba(84, 110, 122, 1);
+  color: white;
+  margin: 0;
+  text-shadow:none;
+}
+.primary_search:hover{
+  background-image:none;
+  border-radius: 0;
+  background-color: rgba(120, 144, 156, 1);
+  border-color:rgba(120, 144, 156, 1);
+  color: white;
+  margin: 0;
+  text-shadow: none;
+}
+.primary_search:focus{
+  background-image:none;
+  border-radius: 0;
+  background-color: rgba(84, 110, 122, 1);
+  border-color:rgba(84, 110, 122, 1);
+  color: white;
+  margin: 0;
+}
+.primary_search:active:hover{
+  background-image:none;
+  border-radius: 0;
+  background-color: rgba(84, 110, 122, 1);
+  border-color:rgba(84, 110, 122, 1);
+  color: white;
+  margin: 0;
+}
+.form-control{
+  border:2px solid #3D1255;
+}
+/*.menu-cols{
+  margin-left: 8px;
+  margin-right: 8px;
+  padding:0;
+}
+#starter{
+  margin:0;
+}
+#finish{
+  margin:0;
+}
+#begin{
+  padding:0;
+  margin-right:5px;
+  margin-left:10px;
+}
+#end{
+  margin-left:0px;
+}*/
+
+/*Cards*/
+.panel-default.recipe_panel{
+  border-color: rgba(74, 20, 140, 1);
+  border-width: 2px;
+  border-radius: 0;
+}
+.panel-body{
+  padding:0
+}
+.ingredHead{
+  padding: 10px;
+}
+.card_btn_div{
+  text-align:center;
+}
+.gets{
+  display: inline-block;
+  margin: 5px;
+}
+.gets{
+  background-image:none;
+  border-radius: 0;
+  background-color: rgba(84, 110, 122, 1);
+  border-color:rgba(84, 110, 122, 1);
+  color: white;
+  text-shadow:none;
+}
+.gets:hover{
+  background-image:none;
+  border-radius: 0;
+  background-color: rgba(120, 144, 156, 1);
+  border-color:rgba(120, 144, 156, 1);
+  color: white;
+  text-shadow: none;
+}
+.gets:focus{
+  background-image:none;
+  border-radius: 0;
+  background-color: rgba(84, 110, 122, 1);
+  border-color:rgba(84, 110, 122, 1);
+  color: white;
+}
+.gets:active:hover{
+  background-image:none;
+  border-radius: 0;
+  background-color: rgba(84, 110, 122, 1);
+  border-color:rgba(84, 110, 122, 1);
+  color: white;
+}
+.recipe_panel{
+  height: 347px;
+}
+
+/*slider*/
+.ui-slider-tooltip{
+  color:black
+}
+
+/*Media Queries*/
+@media only screen and (min-width:992px) and (max-width:1199px){
+  .recipe_panel{
+    height: 400px;
+  }
+}
+@media only screen and (min-width:768px) and (max-width:991px){
+  .recipe_panel{
+    height: 400px;
+  }
+#begin{
+  margin-left:5%;
+}
+}
+@media only screen and (min-width:480px) and (max-width:767px){
+  .recipe_panel{
+    height: 400px;
+  }
+}
+@media only screen and (min-width:414px) and (max-width:479px){
+  .recipe_panel{
+    height: 430px;
+  }
+}
+@media only screen and (min-width:320px) and (max-width:413px){
+  .recipe_panel{
+    height: 400px;
+  }
+}
+
+/*GroceryList Area*/
+.grocery_list_col{
+  border: 1px solid black;
+}
+.liList{
+  list-style-type:circle;
+}
+#map{
+  width: 100%;
+}
+
+
+/*footer*/
+#footer{
+  background-color: #9e9e9e;
+  font-family: 'Lato'
+}
+
+
+/*SNACKBAR*/
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 200px;
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+    visibility: visible; /* Show the snackbar */
+
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 200px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 200px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 200px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 200px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}

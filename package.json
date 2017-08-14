@@ -1,0 +1,24 @@
+{
+  "name": "Q1Project",
+  "version": "1.0.0",
+  "description": "This site was created to simplify recipe searching while keeping the high level of functionality users would expect. Search by recipe, ingredient, cook time, rating, course, and cuisine.  Use as many of these attributes as you would like!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/speichs/Q1Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/speichs/Q1Project/issues"
+  },
+  "homepage": "https://github.com/speichs/Q1Project#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4"
+  }
+}

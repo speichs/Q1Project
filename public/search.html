@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="pics/dinner.png">
+    <title>Yard to Table</title>
+
+    <!--JQUERY CDN -->
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+
+    <!--jQuery UI CDN -->
+    <script
+    src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
+    integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
+    crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400|Lato:300|Open+Sans+Condensed:300" rel="stylesheet">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!--My Scripts -->
+    <script type="text/javascript" src ='js/script.js'></script>
+  </head>
+  <body>
+    <nav id="test" class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand yard" href="#">Yard to Table</a>
+        </div>
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div id='menu_container' class="container">
+      <div class="row menu_row">
+        <div class="row btn_row">
+          <div class="col-sm-1 search_btn">
+            <button id= 'search' type="button" class="btn btn-danger search" aria-label="Left Align">
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </button>
+          </div><!--end col -->
+        </div>
+
+        <div class="center-block row second_row">
+          <div class="col-lg-1 col-sm-0">
+
+          </div>
+          <div id = 'begin'class="col-lg-2 col-sm-2 menu-cols" >
+            <h5>Search By</h5>
+            <div class="radio">
+              <label for= 'ingredients'>
+                <input type="radio" name="optionsRadios" id="ingredients" value="ingredients" checked>
+                Ingredients
+              </label>
+            </div>
+            <div class="radio">
+              <label for = 'ingredients'>
+                <input type="radio" name="optionsRadios" id="recipe" value="recipe">
+                Recipe
+              </label>
+            </div>
+          </div><!-- Search By Col -->
+          <div class="col-lg-3 col-sm-3  menu-cols">
+            <input id = 'textAdder'type="text" class="form-control add_text" placeholder="Text input">
+            <br>
+            <input class="btn btn-default add_btn" type="button" value="Add">
+            <br>
+            <br>
+            <textarea class="form-control" rows="3"></textarea>
+            <br>
+          </div>
+
+          <div class="col-lg-2 col-sm-3">
+            <!-- <div class="row"> -->
+              <label for="cuisine" class = 'center-block'>
+                <select name = 'cuisine' id="cuisine" class="form-control" placeholder='select'>
+                  <option class ='cuisine' value="select cuisine">Select Cuisine</option>
+                  <option class ='cuisine' value="american">American</option>
+                  <option class ='cuisine' value="brazilian">Brazilian</option>
+                  <option class ='cuisine' value="french">French</option>
+                  <option class ='cuisine' value="german">German</option>
+                  <option class ='cuisine' value="indian">Indian</option>
+                  <option class ='cuisine' value="italian">Italian</option>
+                  <option class ='cuisine' value="japanese">Japanese</option>
+                  <option class ='cuisine' value="mexican">Mexican</option>
+                  <option class ='cuisine' value="portuguese">Portuguese</option>
+                  <option class = 'cuisine' value="spanish">Spanish</option>
+                  <option class = 'cuisine' value="thai">Thai</option>
+                </select>
+              </label>
+            <!-- </div> -->
+            <br>
+            <!-- <div class="row"> -->
+              <label for="cuisine" class = 'center-block'>
+                <select name = 'course' id="course" class="form-control" placeholder='select'>
+                  <option class ='cuisine' value="select">Select Course</option>
+                  <option class ='cuisine' value="Appetizers">Appetizers</option>
+                  <option class ='cuisine' value="Breakfast+and+Brunch">Breakfast and Brunch</option>
+                  <option class ='cuisine' value="Lunch">Lunch</option>
+                  <option class ='cuisine' value="Main+Courses">Main Courses</option>
+                  <option class ='cuisine' value="Side+Dishes">Side Dishes</option>
+                  <option class ='cuisine' value="Soups">Soups</option>
+                  <option class ='cuisine' value="Desserts">Desserts</option>
+                  <option class ='cuisine' value="Snacks">Snacks</option>
+                </select>
+              </label>
+          </div>
+            <br>
+          <div id = 'end'class="col-lg-3 col-sm-3 ">
+            <p class ="cook_time_sort">Sort by Cooking Time</p>
+            <br>
+            <div id = "slider"></div>
+            <br>
+            <!-- </form> -->
+            <div class="outer_rate">
+              <h5>Rating</h5>
+              <div class="rating">
+                <span id = "one" class='rate_stars glyphicon glyphicon-star-empty' aria-hidden='true'></span>
+                <span id = "two" class='rate_stars glyphicon glyphicon-star-empty' aria-hidden='true'></span>
+                <span id = "three" class='rate_stars glyphicon glyphicon-star-empty' aria-hidden='true'></span>
+                <span id = "four" class='rate_stars glyphicon glyphicon-star-empty' aria-hidden='true'></span>
+                <span id = "five" class='rate_stars glyphicon glyphicon-star-empty' aria-hidden='true'></span>
+              </div>
+            </div>
+          </div>
+          <!-- <div id="finish" class="col-sm-1 menu-cols">
+
+          </div> -->
+        </div><!-- end second row -->
+        <div class="row third_row ">
+          <div id='mainSearch' class="col-sm-2 col-sm-push-10">
+            <button type="button" class="btn btn-default pull-right primary_search">Search</button>
+          </div>
+        </div>
+      </div><!-- end menu row -->
+        <br>
+        <br>
+        <br>
+      <div class="row cards_row"></div>
+      <div id=gross_row class = 'row grocery_row'></div>
+      <br>
+    </div><!-- end container -->
+    <br>
+    <div id='snackbar'>ONLY ONCE</div>
+    <br>
+    <br>
+      <div id= "footer"class="navbar navbar-default navbar-fixed-bottom">
+      <div class="container">
+        <p class="navbar-text pull-left">
+          Images and recipe data courtesy of <a target='_blank' href='http://www.yummly.com/'>Yummly</a> <br>
+          © 2017 - Site designed &amp; developed by Sean Eichenberger
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
