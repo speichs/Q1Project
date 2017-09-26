@@ -80,7 +80,6 @@ $(document).ready(function() {
     //creating modal elements
     //var $listElem = address.replace('http','https');
     address = address.replace('http://www.yummly.co','https://g-ystatic.herokuapp.com')
-    console.log(address);
     $modalContainer = $("<div id ='recipeModal' class= 'modal fade bs-example-modal-lg' tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel'>");
     $largeModal = $("<div class = 'modal-dialog modal-lg' role = 'document'></div>");
     $modalContent = $("<div class='modal-content'></div>");
@@ -215,7 +214,6 @@ $(document).ready(function() {
     $('.get_recipe').click(function(){
       let $target = $(event.target);
       let $value = $target.val();
-      console.log($value);
       if($('#recipeModal').get(0)){
         $value = $value.replace('http://www.yummly.co','https://g-ystatic.herokuapp.com')
         $('.recipeIframe').attr("src", $value)
@@ -320,7 +318,6 @@ $(document).ready(function() {
         course = '&allowedCourse[]=course^course-'+course;
       }
       let cuisine = $('#cuisine').val();
-      console.log('initial cuisine: ', cuisine);
       if(cuisine === 'select cuisine'){
         cuisine = '';
       }
@@ -336,16 +333,12 @@ $(document).ready(function() {
       else{
         queryString ='';
       }
-      console.log('queryString: ', queryString)
-      console.log('cuisine: ', cuisine);
-      console.log('course:' ,course);
       $xhr = $.getJSON('https://g-yumly.herokuapp.com/v1/api/recipes?q=&requirePictures=true&maxResult=40'+queryString+timeSearchParam+cuisine+course);
       $xhr.done(function(data){
         if ($xhr.status !== 200) {
           return;
         }
         var result = data.matches;
-        console.log(result)
         var promiseArr = [];
         for(let i = 0; i < result.length; i++){
           var key = result[i].id
@@ -534,7 +527,6 @@ function initMap() {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
           for (let i = 0; i < results.length; i++) {
             let place = results[i];
-            //  console.log(place);
             let marker = new google.maps.Marker({
               position: {
                 lat:place.geometry.location.lat(),

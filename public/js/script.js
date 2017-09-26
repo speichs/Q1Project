@@ -79,8 +79,8 @@ $(document).ready(function() {
   function makeRecipeModal(address){
     //creating modal elements
     //var $listElem = address.replace('http','https');
-    address = address.replace('http://www.yummly.co','https://g-ystatic.herokuapp.com')
-    console.log(address);
+    address = address.replace('http', 'https')
+    //address = address.replace('http://www.yummly.com','https://g-ystatic.herokuapp.com')
     $modalContainer = $("<div id ='recipeModal' class= 'modal fade bs-example-modal-lg' tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel'>");
     $largeModal = $("<div class = 'modal-dialog modal-lg' role = 'document'></div>");
     $modalContent = $("<div class='modal-content'></div>");
@@ -215,9 +215,8 @@ $(document).ready(function() {
     $('.get_recipe').click(function(){
       let $target = $(event.target);
       let $value = $target.val();
-      console.log($value);
       if($('#recipeModal').get(0)){
-        $value = $value.replace('http://www.yummly.co','https://g-ystatic.herokuapp.com')
+        $value = $value.replace('http://www.yummly.co','https://www.yummly.com')
         $('.recipeIframe').attr("src", $value)
       }
       else{
@@ -288,7 +287,7 @@ $(document).ready(function() {
         cuisine = '&allowedCuisine[]=cuisine^cuisine-'+cuisine;
       }
 
-      $xhr = $.getJSON('https://gg-yummlyly.herokuapp.com/v1/api/recipes?q='+ searchText+'&requirePictures=true&maxResult=40'+timeSearchParam+cuisine+course);
+      $xhr = $.getJSON('https://gg-yummly.herokuapp.com/v1/api/recipes?q='+ searchText+'&requirePictures=true&maxResult=40'+timeSearchParam+cuisine+course);
       $xhr.done(function(data){
         if ($xhr.status !== 200) {
           return;
@@ -297,7 +296,7 @@ $(document).ready(function() {
         var promiseArr = [];
         for(let i = 0; i < result.length; i++){
           var key = result[i].id;
-          promiseArr.push($.getJSON('https://gg-yummlyly.herokuapp.com/v1/api/recipe/'+key));
+          promiseArr.push($.getJSON('https://gg-yummly.herokuapp.com/v1/api/recipe/'+key));
         }//end for
         Promise.all(promiseArr).then(function(data){
           genCard(data)
@@ -320,7 +319,6 @@ $(document).ready(function() {
         course = '&allowedCourse[]=course^course-'+course;
       }
       let cuisine = $('#cuisine').val();
-      console.log('initial cuisine: ', cuisine);
       if(cuisine === 'select cuisine'){
         cuisine = '';
       }
@@ -336,20 +334,16 @@ $(document).ready(function() {
       else{
         queryString ='';
       }
-      console.log('queryString: ', queryString)
-      console.log('cuisine: ', cuisine);
-      console.log('course:' ,course);
-      $xhr = $.getJSON('https://gg-yummlyly.herokuapp.com/v1/api/recipes?q=&requirePictures=true&maxResult=40'+queryString+timeSearchParam+cuisine+course);
+      $xhr = $.getJSON('https://gg-yummly.herokuapp.com/v1/api/recipes?q=&requirePictures=true&maxResult=40'+queryString+timeSearchParam+cuisine+course);
       $xhr.done(function(data){
         if ($xhr.status !== 200) {
           return;
         }
         var result = data.matches;
-        console.log(result)
         var promiseArr = [];
         for(let i = 0; i < result.length; i++){
           var key = result[i].id
-          promiseArr.push($.getJSON('https://gg-yummlyly.herokuapp.com/v1/api/recipe/'+key));
+          promiseArr.push($.getJSON('https://gg-yummly.herokuapp.com/v1/api/recipe/'+key));
         }//end for
         Promise.all(promiseArr).then(function(data){
           genCard(data);
@@ -534,7 +528,6 @@ function initMap() {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
           for (let i = 0; i < results.length; i++) {
             let place = results[i];
-            //  console.log(place);
             let marker = new google.maps.Marker({
               position: {
                 lat:place.geometry.location.lat(),
